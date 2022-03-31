@@ -18,7 +18,7 @@ function computerPlay () {
 }
 
 function playRound (e) {
-    playerSelection = e.target.id;
+    let playerSelection = e.target.id;
     let computerSelection = computerPlay();
     if (playerSelection === computerSelection) {
         return result.textContent =
@@ -29,19 +29,26 @@ function playRound (e) {
         (playerSelection === 'Paper' && computerSelection === 'Rock') || 
         (playerSelection === 'Scissors' && computerSelection === 'Paper')) {
             playerWinCondition = true;
-        } else playerWinCondition = false;
+    } else playerWinCondition = false;
+    roundDecider (playerWinCondition, playerSelection, computerSelection);
+}
 
+function roundDecider (playerWinCondition, playerSelection, computerSelection) {
     if (playerWinCondition) {
         playerScore = ++playerScore;
         pScoreDiv.textContent = `${playerScore}`;
-        cScoreDiv.textContent = `${computerScore}`;
-        return result.textContent =
-            `You Win! ${playerSelection} beats ${computerSelection}`
+        result.textContent = `You Win! ${playerSelection} beats ${computerSelection}`
     } else{
         computerScore = ++computerScore;
-        pScoreDiv.textContent = `${playerScore}`;
         cScoreDiv.textContent = `${computerScore}`;
-        return result.textContent =
-            `You Lost! ${computerSelection} beats ${playerSelection}`
+        result.textContent = `You Lost! ${computerSelection} beats ${playerSelection}`
     }
+    matchDecider ();
+}
+
+function matchDecider () {
+    if (playerScore === 5) return result.textContent = 
+        'Congratulation! You have beaten the game.'
+    if (computerScore === 5) return result.textContent =
+        'Oops! You failed. Better luck next time!'
 }
