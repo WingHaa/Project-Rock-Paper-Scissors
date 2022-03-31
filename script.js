@@ -1,73 +1,47 @@
 // User input their move
-// Computer make its move
-function showPrompt () {
-    return prompt('Pick between "Rock", "Paper" or "Scissors"','')
-}
+const buttons = document.querySelectorAll('button');
+const pScoreDiv = document.querySelector('.playerScore');
+const cScoreDiv = document.querySelector('.computerScore');
+const result = document.querySelector('.result');
+let playerScore = 0;
+let computerScore = 0;
 
-function formatPlayerInput () {
-    let playerInput = showPrompt()
-    return playerInput.trim().charAt(0).toUpperCase() + playerInput.trim().substring(1).toLowerCase()
-}
-
-function playerPlay () {
-    return input = formatPlayerInput()
-}
-
-function randomOneToThree () {
-    return Math.floor(Math.random()*3 + 1)
-}
+buttons.forEach((button) => {
+    button.addEventListener('click', playRound)
+});
 
 function computerPlay () {
-    let computerChoose = randomOneToThree();
+    let computerChoose = Math.floor(Math.random()*3 + 1);
     if (computerChoose == 1) return 'Rock'
     if (computerChoose == 2) return 'Paper'
     return 'Scissors'
 }
 
-// Compute outcome
-
-function playRound () {
-    let playerSelection = playerPlay();
+function playRound (e) {
+    playerSelection = e.target.id;
     let computerSelection = computerPlay();
-
-    console.log(playerSelection);
-    console.log(computerSelection);
     if (playerSelection === computerSelection) {
-        return `It\'s a draw! We both drew ${computerSelection}`
+        return result.textContent =
+            `It\'s a draw! We both drew ${computerSelection}`
     }
-    
-    let playerWinCondition = false;
+
     if ((playerSelection === 'Rock' && computerSelection === 'Scissors') || 
         (playerSelection === 'Paper' && computerSelection === 'Rock') || 
         (playerSelection === 'Scissors' && computerSelection === 'Paper')) {
             playerWinCondition = true;
-        }
+        } else playerWinCondition = false;
+
     if (playerWinCondition) {
         playerScore = ++playerScore;
-        return `You Win! ${playerSelection} beats ${computerSelection}`
+        pScoreDiv.textContent = `${playerScore}`;
+        cScoreDiv.textContent = `${computerScore}`;
+        return result.textContent =
+            `You Win! ${playerSelection} beats ${computerSelection}`
     } else{
         computerScore = ++computerScore;
-        return `You Lost! ${computerSelection} beats ${playerSelection}`
+        pScoreDiv.textContent = `${playerScore}`;
+        cScoreDiv.textContent = `${computerScore}`;
+        return result.textContent =
+            `You Lost! ${computerSelection} beats ${playerSelection}`
     }
 }
-// Make the game last 5 rounds
-
-function game() {
-    for (let i = 0; i < 5; i++) {
-        if (playerScore == 3 || computerScore == 3) {break;}
-        let a = playRound();
-        console.log(a);
-    }
-    if (playerScore > computerScore) return `Congratulation! You won! The score is ${playerScore}:${computerScore}`
-    if (playerScore < computerScore) return `Too bad! You lost! The score is ${playerScore}:${computerScore}`
-    return `It's a tie! The score is ${playerScore}:${computerScore}`
-}
-
-let playerScore = 0;
-let computerScore = 0;
-let result = game();
-console.log(playerScore);
-console.log(computerScore);
-console.log(result);
-// Announce the winner
-
