@@ -6,21 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RPS - A poor man RNG game</title>
     <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="control">
-        <button id="Rock">Rock!</button>
-        <button id="Paper">Paper!</button>
-        <button id="Scissors">Scissors!</button>
+        <button value="Rock">Rock!</button>
+        <button value="Paper">Paper!</button>
+        <button value="Scissors">Scissors!</button>
     </div>
-    <div class="playerScore">
-        0
+    <div class="scoreBoard">
+        <div class="playerScore">
+            0
+        </div>
+        <div class="computerScore">
+            0
+        </div>
     </div>
-    <div class="computerScore">
-        0
-    </div>
+
     <div class="result">
         
     </div>
+    <button class="replay">Replay</button>
 </body>
 </html>
