@@ -3,10 +3,106 @@
   padding: 0;
 }
 
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  flex-flow: wrap;
+  justify-content: center;
+}
+
+.welcome {
+  display: none; /* remember to remove this*/
+  /* display: flex;*/ /* uncomment this to show welcome page*/
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.welcome img {
+  width: 100%;
+  height: auto;
+}
+
+.welcome p {
+  text-align: center;
+  font-style: italic;
+}
+
+#intro, #startGame {
+  text-align: center;
+}
+
+#intro {
+  font-size: 2vmax;
+}
+
+#startGame {
+  font-size: 3vmax;
+  font-weight: 600;
+  color: ghostwhite;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background: rgb(22, 106, 231);
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  /* display: none; */
+  width: 70vmax;
+  justify-content: space-around;
+}
+
+.result {
+  text-align: center;
+}
+
 .scoreBoard {
   display: flex;
-  text-align: center;
-  justify-items: center;
-  align-content: center;
-  align-items: center;
+  justify-content: space-around;
+}
+
+.control {
+  display: flex;
+  justify-content: space-around;
+}
+
+.player, .pc {
+  transition: all 0.125s ease;
+}
+
+#rock {
+  background: url(src/rock.png);
+  background-size: 5vmax;
+  cursor:pointer;
+  width: 5.2vmax;
+  height: 5.2vmax;
+  border-radius: 10vw;
+}
+
+#paper {
+  background: url(src/paper.png);
+  background-size: 5vmax;
+  cursor:pointer;
+  width: 5.2vmax;
+  height: 5.2vmax;
+  border-radius: 10vw;
+}
+
+#scissors {
+  background: url(src/scissors.png);
+  background-size: 5vmax;
+  cursor:pointer;
+  width: 5.2vmax;
+  height: 5.2vmax;
+  border-radius: 10vw;
+}
+
+.chosen {
+  transform: scale(1.1);
+  border-color: #ffc600;
+  box-shadow: 0 0 10px #ffc600;
 }
