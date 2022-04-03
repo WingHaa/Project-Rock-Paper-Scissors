@@ -34,7 +34,7 @@ body {
   text-align: center;
 }
 
-#intro, .result, .scoreBoard {
+#intro, .result, .scoreBoard, .header {
   font-size: 2vmax;
 }
 
@@ -59,7 +59,7 @@ body {
   text-align: center;
 }
 
-.scoreBoard {
+.header, .scoreBoard {
   display: flex;
   justify-content: space-around;
 }
