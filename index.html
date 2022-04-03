@@ -11,22 +11,22 @@
 <body>
   <div class="welcome">
       <div id="intro">
-          Welcome. Here we offer you a chance to roleplay as our idol "Hoang ba vl" who will be fighting against alien invaders to save the galaxy.<br>
+        Welcome. Here we offer you a chance to roleplay as our idol Hoang "ba vl" Nguyen Minh who will be fighting against alien invaders to save the galaxy.<br>
       </div>
       <div class="introImage">
           <img src="src/hdoacarwheelie.png" alt="Image of Hoang doing a wheelie with car">
           <p>Hoang easily performing wheelie using a  Chevy Camaro SS</p>
       </div>
       <div id="intro">
-          Sure as awesome as Hoang is he can just snap a finger to decimate all the alien but that won't be fun so this time we will settle it with Rock, Paper, Scissors.<br>
-          The rule is simple. Whoever reach 5 points first win.<br>
+        Sure as awesome as Hoang is he can just snap a finger to decimate all the alien but that won't be fun so this time we will settle it with Rock, Paper, Scissors.<br>
+        The rule is simple. Whoever reach 5 points first win.<br>
       </div>
       <button id="startGame">Save the galaxy!</button>
   </div>
   <div class="game">
       <div class="result">Choose your weapon!</div>
       <div class="scoreBoard">
-          <div class="playerScore">
+          <div class="userScore">
               0
           </div>
           <div class="pcScore">
@@ -34,18 +34,40 @@
           </div>
       </div>
       <div class="control">
-          <div class="playerControl">
-              <button class="player" id="rock" value="Rock"></button>
-              <button class="player" id="paper" value="Paper"></button>
-              <button class="player" id="scissors" value="Scissors"></button>
+          <div class="userControl">
+              <button class="user" id="rock" value="Rock"></button>
+              <button class="user" id="paper" value="Paper"></button>
+              <button class="user" id="scissors" value="Scissors"></button>
           </div>
           <div class="pcControl">
               <button class="pc" id="rock" value="Rock"></button>
               <button class="pc" id="paper" value="Paper"></button>
               <button class="pc" id="scissors" value="Scissors"></button>
           </div>
-      </div>            
-      <button class="replay">Replay</button>
+      </div>
+  </div>
+  <div id="loseModal" class="modal">
+    <div class="modal-content">
+      <img src="src/hoangwasted.png" alt="">
+      <p>You actually lost... <br>
+        Don't worry we can always reset the space time until you win. <br>
+        Such is trifling matter for H!
+      </p>
+      <div class="restart">
+        <button id="replay">Play again?</button>
+        <button id="homepage">Home page</button>
+      </div>
+    </div>
+  </div>
+  <div id="winModal" class="modal">
+    <div class="modal-content">
+      <img src="src/hoangbavl.png" alt="">
+      <p>You won! H saved the day again.</p>
+      <div class="restart">
+        <button id="replay">Play again?</button>
+        <button id="homepage">Home page</button>
+      </div>
+    </div>
   </div>
 
 </body>

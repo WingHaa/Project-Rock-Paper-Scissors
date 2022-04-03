@@ -1,14 +1,16 @@
 'use strict';
-const userControl = document.querySelectorAll('.player');
+const userControl = document.querySelectorAll('.user');
 const pcButtons = document.querySelectorAll('.pc');
-const userScoreDiv = document.querySelector('.playerScore');
+const userScoreDiv = document.querySelector('.userScore');
 const pcScoreDiv = document.querySelector('.pcScore');
 const result = document.querySelector('.result');
 const welcome = document.querySelector('.welcome');
 const game = document.querySelector('.game');
-const replayButton = document.querySelector('.replay');
+const loseModal = document.querySelector('#loseModal')
+const replayButton = document.querySelectorAll('#replay');
+const homeButton = document.querySelectorAll('#homepage');
 const startGame = document.querySelector('#startGame');
-let playerScore = 0;
+let userScore = 0;
 let pcScore = 0;
 
 userControl.forEach((button) => {
@@ -21,7 +23,7 @@ userControl.forEach((button) => {
 
 function removeTransition (e) {
   if (e.propertyName !== 'transform') return;
-  this.classList.remove('chosen'); //remove transition for player button
+  this.classList.remove('chosen'); //remove transition for user button
   pcButtons.forEach((button) => {  
     button.classList.remove('chosen'); //remove transition for pc button
   })
@@ -32,7 +34,13 @@ startGame.addEventListener('click', () => {
   game.style.display = 'flex';
 });
 
-replayButton.addEventListener('click', replay);
+replayButton.forEach((button) => {
+  button.addEventListener('click', replay)
+});
+
+homeButton.forEach((button) => {
+  button.addEventListener('click', chill)
+});
 
 function pcPlay () {
   let pcChoose = Math.floor(Math.random()*3 + 1);
@@ -42,57 +50,69 @@ function pcPlay () {
 }
 
 function playRound (e) {
-  let playerSelection = e.target.value;
+  let userSelection = e.target.value;
   let pcSelection = pcPlay();
-  const playerButton = document.querySelector(`#${e.target.id}`);
+  const userButton = document.querySelector(`#${e.target.id}`);
   const pcButton = document.querySelector(
     `.pcControl > #${pcSelection.toLowerCase()}`);
-  playerButton.classList.add('chosen')
+  userButton.classList.add('chosen')
   pcButton.classList.add('chosen')
-  if ((playerScore === 5) || 
+  if ((userScore === 5) || 
     (pcScore === 5) ||
-    (!playerSelection)) return //ignore user clicking outside of button border
-  if (playerSelection === pcSelection) {
+    (!userSelection)) return //ignore user clicking outside of button border
+  if (userSelection === pcSelection) {
     return result.textContent =
       `It\'s a draw! We both drew ${pcSelection}`
   }
-  let playerWinCondition = false;
-    if ((playerSelection === 'Rock' && pcSelection === 'Scissors') || 
-      (playerSelection === 'Paper' && pcSelection === 'Rock') || 
-      (playerSelection === 'Scissors' && pcSelection === 'Paper')) {
-          playerWinCondition = true;
+  let userWinCondition = false;
+    if ((userSelection === 'Rock' && pcSelection === 'Scissors') || 
+      (userSelection === 'Paper' && pcSelection === 'Rock') || 
+      (userSelection === 'Scissors' && pcSelection === 'Paper')) {
+          userWinCondition = true;
       }
-  return getRoundWinner (playerWinCondition, playerSelection, pcSelection);
+  return getRoundWinner (userWinCondition, userSelection, pcSelection);
 }
 
-function getRoundWinner (playerWinCondition, playerSelection, pcSelection) {
-  if (playerWinCondition) {
-      playerScore = ++playerScore;
-      userScoreDiv.textContent = `${playerScore}`;
-      result.textContent = `You Win! ${playerSelection} beats ${pcSelection}`
+function getRoundWinner (userWinCondition, userSelection, pcSelection) {
+  if (userWinCondition) {
+      userScore = ++userScore;
+      userScoreDiv.textContent = `${userScore}`;
+      result.textContent = `You Win! ${userSelection} beats ${pcSelection}`
   } else{
       pcScore = ++pcScore;
       pcScoreDiv.textContent = `${pcScore}`;
-      result.textContent = `You Lost! ${pcSelection} beats ${playerSelection}`
+      result.textContent = `You Lost! ${pcSelection} beats ${userSelection}`
   }
-  return getMatchWinner (playerScore, pcScore);
+  return getMatchWinner (userScore, pcScore);
 }
 
-function getMatchWinner (playerScore, pcScore) {
-  if (playerScore === 5) {
-    return result.textContent = 
-      'Congratulation! You have beaten the game.'
+function getMatchWinner (userScore, pcScore) {
+  if (userScore === 5) {
+    return winModal.style.display = 'flex'
     }
   if (pcScore === 5) {
-    return result.textContent =
-      'Oops! You failed. Better luck next time!'
+    return loseModal.style.display = 'flex'
   }
 }
 
 function replay () {
-  playerScore = 0; //reset the scores and result
+  userScore = 0; //reset the scores and result
   pcScore = 0;
-  userScoreDiv.textContent = `${playerScore}`;
+  userScoreDiv.textContent = `${userScore}`;
   pcScoreDiv.textContent = `${pcScore}`;
-  return result.textContent = '';
+  result.textContent = 'Choose your weapon!';
+  loseModal.style.display = 'none';
+  return winModal.style.display = 'none';
+}
+
+function chill () {
+  userScore = 0;
+  pcScore = 0;
+  userScoreDiv.textContent = `${userScore}`;
+  pcScoreDiv.textContent = `${pcScore}`;
+  result.textContent = 'Choose your weapon!';
+  loseModal.style.display = 'none';
+  winModal.style.display = 'none';
+  game.style.display = 'none';
+  return welcome.style.display = 'flex';
 }

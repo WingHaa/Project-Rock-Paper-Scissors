@@ -13,8 +13,7 @@ body {
 }
 
 .welcome {
-  display: none; /* remember to remove this*/
-  /* display: flex;*/ /* uncomment this to show welcome page*/
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
@@ -28,13 +27,14 @@ body {
 .welcome p {
   text-align: center;
   font-style: italic;
+  font-size: 1.5vmax;
 }
 
 #intro, #startGame {
   text-align: center;
 }
 
-#intro {
+#intro, .result, .scoreBoard {
   font-size: 2vmax;
 }
 
@@ -49,9 +49,8 @@ body {
 }
 
 .game {
-  display: flex;
+  display: none;
   flex-direction: column;
-  /* display: none; */
   width: 70vmax;
   justify-content: space-around;
 }
@@ -70,7 +69,13 @@ body {
   justify-content: space-around;
 }
 
-.player, .pc {
+.userControl, .pcControl {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.user, .pc {
   transition: all 0.125s ease;
 }
 
@@ -105,4 +110,57 @@ body {
   transform: scale(1.1);
   border-color: #ffc600;
   box-shadow: 0 0 10px #ffc600;
+}
+
+.modal {
+  display: none;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+}
+
+.restart {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+#replay, #homepage {
+  font-size: 2vmax;
+  font-weight: 600;
+  color: ghostwhite;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background: rgb(22, 106, 231);
+}
+
+.modal-content p {
+  font-size: 2vmax;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#loseModal img {
+  max-width: 700px;
+  height: auto;
 }
